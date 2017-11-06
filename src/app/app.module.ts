@@ -15,7 +15,7 @@ const firebaseAuth = { // Database information that was copied from the Firebase
     authDomain: "tabletophelper.firebaseapp.com",
     databaseURL: "https://tabletophelper.firebaseio.com",
     projectId: "tabletophelper",
-    storageBucket: "ionic-cv.appspot.com",
+    storageBucket: "tabletophelper.firebaseapp.com",
     messagingSenderId: "995300845179"
   };
 
