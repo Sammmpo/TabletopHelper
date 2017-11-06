@@ -42,23 +42,27 @@ export class dicePage {
 
   @ViewChild("amount") amount;
   @ViewChild("sides") sides;
+  diceList = [];
 
   public rollDice(){
     console.log("rolling the dice!");
-    this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
-    console.log(this.randomNumber);
-    this.ngAfterViewInit();
-
-    var diceList = [];
-    for (let i = 0; i++; i < this.amount.value){
-
+    this.diceList = [];
+    for (let i = 0; i < this.amount.value; i++){
+      this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
+      console.log(this.randomNumber);
+      this.diceList.push(this.randomNumber);
     }
+    this.ngAfterViewInit();
   }
 
   randomNumber;
 
   ngAfterViewInit() {
-    document.getElementById("rollResult").innerHTML = String(this.randomNumber);
+    // document.getElementById("rollResult").innerHTML = String(this.randomNumber);
+    document.getElementById("rollResult").innerHTML = "Results: ";
+    for (let i = 0; i < this.diceList.length; i++){
+      document.getElementById("rollResult").innerHTML += this.diceList[i]+" ";
+    }
   }
 
 }

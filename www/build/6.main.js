@@ -5943,6 +5943,7 @@ var dicePage = (function () {
         this.newItem = ''; // This is only used to generate test data for each user, not actually utilized within the app.
         this.username = '';
         this.email = '';
+        this.diceList = [];
         var info = this.auth.getUserInfo();
         console.log(info);
         console.log(this.firebaseProvider.currentUser);
@@ -5962,15 +5963,20 @@ var dicePage = (function () {
     };
     dicePage.prototype.rollDice = function () {
         console.log("rolling the dice!");
-        this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
-        console.log(this.randomNumber);
-        this.ngAfterViewInit();
-        var diceList = [];
-        for (var i = 0; i++; i < this.amount.value) {
+        this.diceList = [];
+        for (var i = 0; i < this.amount.value; i++) {
+            this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
+            console.log(this.randomNumber);
+            this.diceList.push(this.randomNumber);
         }
+        this.ngAfterViewInit();
     };
     dicePage.prototype.ngAfterViewInit = function () {
-        document.getElementById("rollResult").innerHTML = String(this.randomNumber);
+        // document.getElementById("rollResult").innerHTML = String(this.randomNumber);
+        document.getElementById("rollResult").innerHTML = "Results: ";
+        for (var i = 0; i < this.diceList.length; i++) {
+            document.getElementById("rollResult").innerHTML += this.diceList[i] + " ";
+        }
     };
     return dicePage;
 }());
