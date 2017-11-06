@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../providers/auth-service/auth-service';
@@ -38,6 +38,18 @@ export class dicePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+  }
+
+  public rollDice(){
+    console.log("rolling the dice!");
+    this.randomNumber = Math.floor(Math.random() * 6) + 1;
+    this.ngAfterViewInit();
+  }
+
+  randomNumber;
+
+  ngAfterViewInit() {
+    document.getElementById("rollResult").innerHTML = String(this.randomNumber);
   }
 
 }
