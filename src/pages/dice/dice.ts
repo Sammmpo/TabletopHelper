@@ -13,12 +13,17 @@ import firebase from 'firebase';
 
 export class dicePage {
   shoppingItems: FirebaseListObservable<any[]>;
-  newItem = ''; // This is only used to generate test data for each user, not actually utilized within the app.
+  newItem = ''; 
   username = '';
   email = '';
-
+  results = "";
+  total = 0;
+  diceList = [];
+  randomNumber;
   @ViewChild('username') user;
   @ViewChild('password') password;
+  @ViewChild("amount") amount;
+  @ViewChild("sides") sides;
 
   constructor(private auth: AuthService, public navParams: NavParams, public firebaseProvider: FirebaseProvider) {
     let info = this.auth.getUserInfo();
@@ -40,10 +45,6 @@ export class dicePage {
     console.log('ionViewDidLoad ListPage');
   }
 
-  @ViewChild("amount") amount;
-  @ViewChild("sides") sides;
-  diceList = [];
-
   public rollDice(){
     console.log("rolling the dice!");
     this.diceList = [];
@@ -55,18 +56,16 @@ export class dicePage {
     this.ngAfterViewInit();
   }
 
-  randomNumber;
-
   ngAfterViewInit() {
-    document.getElementById("rollResult").innerHTML = "Results: ";
+    this.results = "";
+    this.total = 0;
+    console.log(this.results);
     for (let i = 0; i < this.diceList.length; i++){
-      document.getElementById("rollResult").innerHTML += this.diceList[i]+" ";
+      this.results += this.diceList[i]+" ";
     }
-    var count = 0;
     for (let i = 0; i < this.diceList.length; i++){
-      count += this.diceList[i];
+      this.total += this.diceList[i];
     }
-    document.getElementById("rollResult").innerHTML += "<br>Total: "+count;
   }
 
 }

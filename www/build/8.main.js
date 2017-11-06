@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 413:
+/***/ 410:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "landingPageModule", function() { return landingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__landing__ = __webpack_require__(466);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,42 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RegisterPageModule = (function () {
-    function RegisterPageModule() {
+var landingPageModule = (function () {
+    function landingPageModule() {
     }
-    return RegisterPageModule;
+    return landingPageModule;
 }());
-RegisterPageModule = __decorate([
+landingPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
-        ],
-        exports: [
-            __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]
-        ]
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__landing__["a" /* landingPage */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__landing__["a" /* landingPage */])],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__landing__["a" /* landingPage */]]
     })
-], RegisterPageModule);
+], landingPageModule);
 
-// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
-//# sourceMappingURL=register.module.js.map
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
+//# sourceMappingURL=landing.module.js.map
 
 /***/ }),
 
-/***/ 469:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return landingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__ = __webpack_require__(270);
-// The page used for registration.
-// Authentication doesn't really make sense for an app that's main purpose is to serve as CV.
-// However, sign-in and registration was created to meet the requirements of the course.
+// This is the landing page for the application.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,58 +56,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var RegisterPage = (function () {
-    function RegisterPage(alertCtrl, fire, navCtrl, navParams, firebaseProvider) {
-        this.alertCtrl = alertCtrl;
-        this.fire = fire;
+var landingPage = (function () {
+    function landingPage(navCtrl, alertCtrl) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.firebaseProvider = firebaseProvider;
+        this.alertCtrl = alertCtrl;
     }
-    RegisterPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegisterPage');
+    landingPage.prototype.signIn = function () {
+        this.navCtrl.push('LoginPage');
     };
-    RegisterPage.prototype.alert = function (message) {
-        this.alertCtrl.create({
-            title: 'Info!',
-            subTitle: message,
-            buttons: ['OK']
-        }).present();
+    landingPage.prototype.register = function () {
+        this.navCtrl.push('RegisterPage');
     };
-    RegisterPage.prototype.registerUser = function () {
-        var _this = this;
-        this.fire.auth.createUserWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
-            .then(function (data) {
-            console.log('got data ', data); // For development purposes, gives useful data.
-            _this.alert('Registered!');
-        })
-            .catch(function (error) {
-            console.log('got an error ', error);
-            _this.alert(error.message);
-        });
-        console.log('Would register user with ', this.user.value, this.password.value);
-    };
-    return RegisterPage;
+    return landingPage;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])('username'),
     __metadata("design:type", Object)
-], RegisterPage.prototype, "user", void 0);
+], landingPage.prototype, "uname", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])('password'),
     __metadata("design:type", Object)
-], RegisterPage.prototype, "password", void 0);
-RegisterPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'RegisterPage' }),
+], landingPage.prototype, "password", void 0);
+landingPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'landingPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-register',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\register\register.html"*/'<!-- The page used for registering -->\n\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Create Account\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n\n  <ion-item>\n    <ion-label floating>Username</ion-label>\n    <ion-input type="text" #username></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Password</ion-label>\n    <ion-input type="password" #password></ion-input>\n  </ion-item>\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click)="registerUser()" item-left>Register</button>\n</div>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\register\register.html"*/,
+        selector: 'page-landing',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\landing\landing.html"*/'<!-- This is the landing page for the application -->\n\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-title class=centeredText>\n      Tabletop Helper\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding color="primary">\n\n  <div id="topButtons">\n	<button ion-button (click)="signIn()" item-left>Sign In</button>\n	<button ion-button (click)="register()" item-left>Register</button>\n	</div>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\landing\landing.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["b" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__["a" /* FirebaseProvider */]])
-], RegisterPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]])
+], landingPage);
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
-//# sourceMappingURL=register.js.map
+//# sourceMappingURL=landing.js.map
 
 /***/ })
 
