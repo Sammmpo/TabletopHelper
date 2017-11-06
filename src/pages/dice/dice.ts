@@ -26,7 +26,7 @@ export class dicePage {
     console.log(this.firebaseProvider.currentUser);
   }
 
-  public logout() { // called from HTML element.
+  public logout() {
     firebase.auth().signOut().then(() => {
       console.log("Logged out!")
       this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
@@ -40,10 +40,19 @@ export class dicePage {
     console.log('ionViewDidLoad ListPage');
   }
 
+  @ViewChild("amount") amount;
+  @ViewChild("sides") sides;
+
   public rollDice(){
     console.log("rolling the dice!");
-    this.randomNumber = Math.floor(Math.random() * 6) + 1;
+    this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
+    console.log(this.randomNumber);
     this.ngAfterViewInit();
+
+    var diceList = [];
+    for (let i = 0; i++; i < this.amount.value){
+
+    }
   }
 
   randomNumber;

@@ -19,12 +19,11 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-input id="amount" placeholder="Number of die"></ion-input>
-    <ion-input id="sides" placeholder="Number of sides"></ion-input>
+    Number of die:<ion-input id="amount" placeholder="#" value="1" #amount></ion-input>
+    Number of sides:<ion-input id="sides" placeholder="#" value="6" #sides></ion-input>
     <button ion-button (click)="rollDice()">Roll</button>
   <br>
   <ion-item id="rollResult"></ion-item>
-  <!-- <span id="rollResult">?</span> -->
 </ion-content>
 
 <!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->
