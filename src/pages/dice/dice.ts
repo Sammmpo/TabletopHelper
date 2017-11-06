@@ -58,11 +58,15 @@ export class dicePage {
   randomNumber;
 
   ngAfterViewInit() {
-    // document.getElementById("rollResult").innerHTML = String(this.randomNumber);
     document.getElementById("rollResult").innerHTML = "Results: ";
     for (let i = 0; i < this.diceList.length; i++){
       document.getElementById("rollResult").innerHTML += this.diceList[i]+" ";
     }
+    var count = 0;
+    for (let i = 0; i < this.diceList.length; i++){
+      count += this.diceList[i];
+    }
+    document.getElementById("rollResult").innerHTML += "<br>Total: "+count;
   }
 
 }

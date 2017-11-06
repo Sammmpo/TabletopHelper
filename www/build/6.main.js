@@ -5972,11 +5972,15 @@ var dicePage = (function () {
         this.ngAfterViewInit();
     };
     dicePage.prototype.ngAfterViewInit = function () {
-        // document.getElementById("rollResult").innerHTML = String(this.randomNumber);
         document.getElementById("rollResult").innerHTML = "Results: ";
         for (var i = 0; i < this.diceList.length; i++) {
             document.getElementById("rollResult").innerHTML += this.diceList[i] + " ";
         }
+        var count = 0;
+        for (var i = 0; i < this.diceList.length; i++) {
+            count += this.diceList[i];
+        }
+        document.getElementById("rollResult").innerHTML += "<br>Total: " + count;
     };
     return dicePage;
 }());
