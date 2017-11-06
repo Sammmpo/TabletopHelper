@@ -25223,7 +25223,7 @@ page-dice #additem button {
   flex: 1;
 }
 
-page-home #topButtons {
+page-landing #topButtons {
   vertical-align: middle;
   display: -webkit-box;
   display: -webkit-flex;
@@ -25236,7 +25236,7 @@ page-home #topButtons {
   flex-direction: column;
 }
 
-page-home #topButtons button {
+page-landing #topButtons button {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;

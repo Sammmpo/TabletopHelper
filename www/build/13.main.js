@@ -1,14 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 408:
+/***/ 410:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExperiencePageModule", function() { return ExperiencePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoggedinPageModule", function() { return LoggedinPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__experience__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__loggedin__ = __webpack_require__(466);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,27 +18,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ExperiencePageModule = (function () {
-    function ExperiencePageModule() {
+var LoggedinPageModule = (function () {
+    function LoggedinPageModule() {
     }
-    return ExperiencePageModule;
+    return LoggedinPageModule;
 }());
-ExperiencePageModule = __decorate([
+LoggedinPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__experience__["a" /* ExperiencePage */],
+            __WEBPACK_IMPORTED_MODULE_2__loggedin__["a" /* LoggedinPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__experience__["a" /* ExperiencePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__loggedin__["a" /* LoggedinPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__experience__["a" /* ExperiencePage */]
+            __WEBPACK_IMPORTED_MODULE_2__loggedin__["a" /* LoggedinPage */]
         ]
     })
-], ExperiencePageModule);
+], LoggedinPageModule);
 
-// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
-//# sourceMappingURL=experience.module.js.map
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
+//# sourceMappingURL=loggedin.module.js.map
 
 /***/ }),
 
@@ -5910,16 +5910,18 @@ __webpack_require__(444);
 
 /***/ }),
 
-/***/ 464:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExperiencePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedinPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(460);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(271);
+// This page is shown as the "home" page to the user.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5933,21 +5935,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ExperiencePage = (function () {
-    function ExperiencePage(navCtrl, navParams, firebaseProvider) {
+
+var LoggedinPage = (function () {
+    function LoggedinPage(app, navCtrl, navParams, fire, firebaseProvider) {
+        this.app = app;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.fire = fire;
         this.firebaseProvider = firebaseProvider;
+        this.email = fire.auth.currentUser.email;
+        //this.name = fire.auth.currentUser.displayName;
         if (firebaseProvider.currentUser == " ") {
             this.navCtrl.setRoot('LoginPage');
         }
     }
-    ExperiencePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ExperiencePage');
+    LoggedinPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoggedinPage');
     };
-    ExperiencePage.prototype.logout = function () {
+    LoggedinPage.prototype.logout = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().signOut().then(function () {
+        __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.auth().signOut().then(function () {
             console.log("Logged out!");
             _this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
             document.location.href = 'index.html'; // reloads the app to force the user out of the member area.
@@ -5955,18 +5962,18 @@ var ExperiencePage = (function () {
             console.log("Error!");
         });
     };
-    return ExperiencePage;
+    return LoggedinPage;
 }());
-ExperiencePage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'ExperiencePage' }),
+LoggedinPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'LoggedinPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-experience',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\experience\experience.html"*/'<!-- Experience page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Experience</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\experience\experience.html"*/,
+        selector: 'page-loggedin',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\loggedin\loggedin.html"*/'<!-- This page is shown as the "Home" page to the user. -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\loggedin\loggedin.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
-], ExperiencePage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["b" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__["a" /* FirebaseProvider */]])
+], LoggedinPage);
 
-// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
-//# sourceMappingURL=experience.js.map
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
+//# sourceMappingURL=loggedin.js.map
 
 /***/ })
 

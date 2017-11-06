@@ -1,29 +1,43 @@
-// This is the landing page for the application.
+// This page is shown as the "home" page to the user.
 
-import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular'; 
-import { IonicPage } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import firebase from 'firebase';
+import { FirebaseProvider } from './../../providers/firebase/firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-@IonicPage({name: 'HomePage'})
+@IonicPage({name: 'homePage'})
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
-export class HomePage {
+export class homePage {
 
-	@ViewChild('username') uname;
-	@ViewChild('password') password;
+  email: string;
+  name: string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public firebaseProvider: FirebaseProvider) {
+   this.email = fire.auth.currentUser.email;
+   //this.name = fire.auth.currentUser.displayName;
+   if (firebaseProvider.currentUser == " "){
+    this.navCtrl.setRoot('LoginPage');
+    }
   }
 
-  signIn() { // Function for the signin button.
-  	this.navCtrl.push('LoginPage');
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad homePage');
   }
 
-  register() { // Function for the register button.
-  	this.navCtrl.push('RegisterPage');
+  public logout() { // called from HTML element.
+    firebase.auth().signOut().then(() => {
+      console.log("Logged out!")
+      this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
+      document.location.href = 'index.html'; // reloads the app to force the user out of the member area.
+    }, function(error) {
+      console.log("Error!")
+    });
   }
+
 
 }
 

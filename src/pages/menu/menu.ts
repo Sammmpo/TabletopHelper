@@ -23,7 +23,7 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
 
   pages: PageInterface[] = [ // list of icons in the menu which can be clicked to access different pages of the app.
-    { title: 'Home', pageName: 'TabsPage', tabComponent: 'LoggedinPage', index: 0, icon: 'home'},
+    { title: 'Home', pageName: 'TabsPage', tabComponent: 'homePage', index: 0, icon: 'home'},
     { title: 'Dice', pageName: 'TabsPage', tabComponent: 'dicePage', index: 1, icon: 'ios-help-circle'},
     { title: 'Initiative', pageName: 'TabsPage', tabComponent: 'initiativePage', index: 2, icon: 'ios-people'},
     { title: 'Timer', pageName: 'TabsPage', tabComponent: 'timerPage', index: 3, icon: 'ios-stopwatch'},

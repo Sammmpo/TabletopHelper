@@ -5868,15 +5868,15 @@ __webpack_require__(444);
 
 /***/ }),
 
-/***/ 480:
+/***/ 488:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerPageModule", function() { return timerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initiativePageModule", function() { return initiativePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timer__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__initiative__ = __webpack_require__(489);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5886,35 +5886,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var timerPageModule = (function () {
-    function timerPageModule() {
+var initiativePageModule = (function () {
+    function initiativePageModule() {
     }
-    return timerPageModule;
+    return initiativePageModule;
 }());
-timerPageModule = __decorate([
+initiativePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__timer__["a" /* timerPage */],
+            __WEBPACK_IMPORTED_MODULE_2__initiative__["a" /* initiativePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__timer__["a" /* timerPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__initiative__["a" /* initiativePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__timer__["a" /* timerPage */]
+            __WEBPACK_IMPORTED_MODULE_2__initiative__["a" /* initiativePage */]
         ]
     })
-], timerPageModule);
+], initiativePageModule);
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
-//# sourceMappingURL=timer.module.js.map
+//# sourceMappingURL=initiative.module.js.map
 
 /***/ }),
 
-/***/ 481:
+/***/ 489:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return timerPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initiativePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(270);
@@ -5933,8 +5933,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var timerPage = (function () {
-    function timerPage(navCtrl, navParams, firebaseProvider) {
+var initiativePage = (function () {
+    function initiativePage(navCtrl, navParams, firebaseProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
@@ -5942,32 +5942,31 @@ var timerPage = (function () {
             this.navCtrl.setRoot('LoginPage');
         }
     }
-    timerPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad timerPage');
+    initiativePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad initiativePage');
     };
-    timerPage.prototype.logout = function () {
+    initiativePage.prototype.logout = function () {
         var _this = this;
         __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().signOut().then(function () {
             console.log("Logged out!");
             _this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
-            //this.navCtrl.setRoot('LoginPage');
             document.location.href = 'index.html'; // reloads the app to force the user out of the member area.
         }, function (error) {
             console.log("Error!");
         });
     };
-    return timerPage;
+    return initiativePage;
 }());
-timerPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'timerPage' }),
+initiativePage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'initiativePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
+        selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
-], timerPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
+], initiativePage);
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
-//# sourceMappingURL=timer.js.map
+//# sourceMappingURL=initiative.js.map
 
 /***/ })
 
