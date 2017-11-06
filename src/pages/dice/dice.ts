@@ -59,7 +59,6 @@ export class dicePage {
   ngAfterViewInit() {
     this.results = "";
     this.total = 0;
-    console.log(this.results);
     for (let i = 0; i < this.diceList.length; i++){
       this.results += this.diceList[i]+" ";
     }
