@@ -7,7 +7,7 @@ webpackJsonp([2],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExperiencePageModule", function() { return ExperiencePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__experience__ = __webpack_require__(464);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -37,7 +37,7 @@ ExperiencePageModule = __decorate([
     })
 ], ExperiencePageModule);
 
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541.
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
 //# sourceMappingURL=experience.module.js.map
 
 /***/ }),
@@ -1680,7 +1680,7 @@ var ControllerInterface = /** @class */ (function () {
      * It closes any currently open indexdb database connections.
      */
     ControllerInterface.prototype.delete = function () {
-        this.tokenManager_.closeDatabase();
+        return this.tokenManager_.closeDatabase();
     };
     /**
      * Returns the current Notification Permission state.
@@ -3585,7 +3585,6 @@ function toBase64(arrayBuffer) {
 
 
 
-var FCM_TOKEN_DETAILS_DB = 'fcm_token_details_db';
 var FCM_TOKEN_OBJ_STORE = 'fcm_token_object_Store';
 var FCM_TOKEN_DETAILS_DB_VERSION = 1;
 var TokenManager = /** @class */ (function () {
@@ -3603,7 +3602,7 @@ var TokenManager = /** @class */ (function () {
             return this.openDbPromise_;
         }
         this.openDbPromise_ = new Promise(function (resolve, reject) {
-            var request = indexedDB.open(FCM_TOKEN_DETAILS_DB, FCM_TOKEN_DETAILS_DB_VERSION);
+            var request = indexedDB.open(TokenManager.DB_NAME, FCM_TOKEN_DETAILS_DB_VERSION);
             request.onerror = function (event) {
                 reject(event.target.error);
             };
@@ -5853,7 +5852,7 @@ var UploadTaskSnapshot = /** @class */ (function () {
  */
 
 var firebase = __webpack_require__(55);
-__webpack_require__(133);
+__webpack_require__(134);
 __webpack_require__(36);
 __webpack_require__(461);
 __webpack_require__(462);
@@ -5917,8 +5916,8 @@ __webpack_require__(444);
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExperiencePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5961,13 +5960,12 @@ var ExperiencePage = (function () {
 ExperiencePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'ExperiencePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-experience',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\experience\experience.html"*/'<!-- Experience page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Experience</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n    <ul>\n      <li>\n        Warehouse Worker & E-Commerce. VeliMark. Summer 2016 - Present.\n      </li>\n      <br>\n      <li>\n        Technical CAD Assistant. Expecon. 1.5 years, Summer 2014 - Fall 2015.\n      </li>\n      <br>\n      <li>\n        CAD Assistant Trainee. Pöyry Finland. 2 months, Fall 2013.\n      </li>\n      <br>\n      <li>\n        CAD Assistant Trainee. Metso Automation. 1 month, Spring 2013.\n      </li>\n      <br>\n      <li>\n        Partnership as YouTube Content Provider. BroadbandTV. 2014-2016.\n      </li>\n    </ul>\n  </ion-content>\n\n<!-- This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\experience\experience.html"*/,
+        selector: 'page-experience',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\experience\experience.html"*/'<!-- Experience page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Experience</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\experience\experience.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
 ], ExperiencePage);
 
-var _a, _b, _c;
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=experience.js.map
 
 /***/ })

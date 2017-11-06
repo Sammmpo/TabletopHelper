@@ -7,7 +7,7 @@ webpackJsonp([0],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SkillsPageModule", function() { return SkillsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__skills__ = __webpack_require__(470);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -37,7 +37,7 @@ SkillsPageModule = __decorate([
     })
 ], SkillsPageModule);
 
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541.
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
 //# sourceMappingURL=skills.module.js.map
 
 /***/ }),
@@ -1680,7 +1680,7 @@ var ControllerInterface = /** @class */ (function () {
      * It closes any currently open indexdb database connections.
      */
     ControllerInterface.prototype.delete = function () {
-        this.tokenManager_.closeDatabase();
+        return this.tokenManager_.closeDatabase();
     };
     /**
      * Returns the current Notification Permission state.
@@ -3585,7 +3585,6 @@ function toBase64(arrayBuffer) {
 
 
 
-var FCM_TOKEN_DETAILS_DB = 'fcm_token_details_db';
 var FCM_TOKEN_OBJ_STORE = 'fcm_token_object_Store';
 var FCM_TOKEN_DETAILS_DB_VERSION = 1;
 var TokenManager = /** @class */ (function () {
@@ -3603,7 +3602,7 @@ var TokenManager = /** @class */ (function () {
             return this.openDbPromise_;
         }
         this.openDbPromise_ = new Promise(function (resolve, reject) {
-            var request = indexedDB.open(FCM_TOKEN_DETAILS_DB, FCM_TOKEN_DETAILS_DB_VERSION);
+            var request = indexedDB.open(TokenManager.DB_NAME, FCM_TOKEN_DETAILS_DB_VERSION);
             request.onerror = function (event) {
                 reject(event.target.error);
             };
@@ -5853,7 +5852,7 @@ var UploadTaskSnapshot = /** @class */ (function () {
  */
 
 var firebase = __webpack_require__(55);
-__webpack_require__(133);
+__webpack_require__(134);
 __webpack_require__(36);
 __webpack_require__(461);
 __webpack_require__(462);
@@ -5917,8 +5916,8 @@ __webpack_require__(444);
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SkillsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5962,13 +5961,12 @@ var SkillsPage = (function () {
 SkillsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'SkillsPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-skills',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\skills\skills.html"*/'<!-- Skills page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Skills</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n    <ul>\n        <b>CAD & 3D</b>\n        <li>AutoCAD</li>\n        <li>ArchiCAD</li>\n        <li>Revit</li>\n        <li>Inventor</li>\n        <li>Tekla Structures</li>\n        <li>SolidWorks</li>\n        <br>\n        <b>Audiovisual</b>\n        <li>Adobe Photoshop</li>\n        <li>Premiere</li>\n        <li>Illustrator</li>\n        <li>Sony Vegas</li>\n        <li>Unity Game Engine</li>\n        <br>\n        <b>Documentation</b>\n        <li>Microsoft Word</li>\n        <li>Microsoft Excel</li>\n        <li> Microsoft PowerPoint</li>\n        <br>\n        <b>Programming</b>\n        <li>HTML5</li>\n        <li>CSS</li>\n        <li>JavaScript</li>\n        <li>Java</li>\n        <li>PHP</li>\n        <li>SQL</li>\n        <li>JSON</li>\n        <li>Ionic</li>\n        <br>\n        <b>Content Management Systems</b>\n        <li>Drupal</li>\n        <li>PeCC, the Papyrus CMS</li>\n        <br>\n        <b>Enterprise Systems</b> \n        <li>SAP</li>\n        <li>Microsoft Dynamics NAV</li>\n        <br>\n        <b>Natural Languages</b>\n        <li>English</li>\n        <li>Finnish (native)</li>\n        <li>Swedish</li>\n        <br>\n        <b>Other</b>\n        <li>B-class Driving License</li>\n      </ul>\n</ion-content>\n\n<!-- This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\skills\skills.html"*/,
+        selector: 'page-skills',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\skills\skills.html"*/'<!-- Skills page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Skills</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\skills\skills.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
 ], SkillsPage);
 
-var _a, _b, _c;
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=skills.js.map
 
 /***/ })

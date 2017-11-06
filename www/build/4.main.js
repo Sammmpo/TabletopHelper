@@ -7,7 +7,7 @@ webpackJsonp([4],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPageModule", function() { return TabsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs__ = __webpack_require__(471);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -37,7 +37,7 @@ TabsPageModule = __decorate([
     })
 ], TabsPageModule);
 
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=tabs.module.js.map
 
 /***/ }),
@@ -48,7 +48,7 @@ TabsPageModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 // This is the tabs bar visible at the bottom of the application user interface.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -79,13 +79,12 @@ var TabsPage = (function () {
 TabsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'TabsPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-tabs',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\tabs\tabs.html"*/'<ion-tabs [selectedIndex]="myIndex" color=primary>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Education" tabIcon="book"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Experience" tabIcon="briefcase"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Skills" tabIcon="cloud"></ion-tab>\n</ion-tabs>\n\n<!-- This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\tabs\tabs.html"*/,
+        selector: 'page-tabs',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\tabs\tabs.html"*/'<ion-tabs [selectedIndex]="myIndex" color=primary>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Education" tabIcon="book"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Experience" tabIcon="briefcase"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Skills" tabIcon="cloud"></ion-tab>\n</ion-tabs>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\tabs\tabs.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], TabsPage);
 
-var _a, _b;
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=tabs.js.map
 
 /***/ })

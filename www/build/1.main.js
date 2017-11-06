@@ -7,7 +7,7 @@ webpackJsonp([1],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoggedinPageModule", function() { return LoggedinPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__loggedin__ = __webpack_require__(466);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -37,7 +37,7 @@ LoggedinPageModule = __decorate([
     })
 ], LoggedinPageModule);
 
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=loggedin.module.js.map
 
 /***/ }),
@@ -1680,7 +1680,7 @@ var ControllerInterface = /** @class */ (function () {
      * It closes any currently open indexdb database connections.
      */
     ControllerInterface.prototype.delete = function () {
-        this.tokenManager_.closeDatabase();
+        return this.tokenManager_.closeDatabase();
     };
     /**
      * Returns the current Notification Permission state.
@@ -3585,7 +3585,6 @@ function toBase64(arrayBuffer) {
 
 
 
-var FCM_TOKEN_DETAILS_DB = 'fcm_token_details_db';
 var FCM_TOKEN_OBJ_STORE = 'fcm_token_object_Store';
 var FCM_TOKEN_DETAILS_DB_VERSION = 1;
 var TokenManager = /** @class */ (function () {
@@ -3603,7 +3602,7 @@ var TokenManager = /** @class */ (function () {
             return this.openDbPromise_;
         }
         this.openDbPromise_ = new Promise(function (resolve, reject) {
-            var request = indexedDB.open(FCM_TOKEN_DETAILS_DB, FCM_TOKEN_DETAILS_DB_VERSION);
+            var request = indexedDB.open(TokenManager.DB_NAME, FCM_TOKEN_DETAILS_DB_VERSION);
             request.onerror = function (event) {
                 reject(event.target.error);
             };
@@ -5853,7 +5852,7 @@ var UploadTaskSnapshot = /** @class */ (function () {
  */
 
 var firebase = __webpack_require__(55);
-__webpack_require__(133);
+__webpack_require__(134);
 __webpack_require__(36);
 __webpack_require__(461);
 __webpack_require__(462);
@@ -5917,11 +5916,11 @@ __webpack_require__(444);
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedinPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(271);
 // This page is shown as the "home" page to the user.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5968,13 +5967,12 @@ var LoggedinPage = (function () {
 LoggedinPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'LoggedinPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-loggedin',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\loggedin\loggedin.html"*/'<!-- This page is shown as the "Home" page to the user. -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  Sampsa Kares, 21<br>sampsa.kares@student.laurea.fi<br>GitHub: Sammmpo\n  <br><br>\n  <img src="https://avatars3.githubusercontent.com/u/25323907?s=400&u=a0578fb8ba418cdf23666a213672268bbf04ed13&v=4">\n  <br><br>\n  I am currently studying business information technology in a University of Applied Sciences with the primary focus on programming. I enjoy playing with algorithms using PHP and JavaScript.\n  <br><br>\n  Previously, I have graduated as a CAD assistant and have well over 1 year of work experience in that field. My CAD expertise is mostly 3D visualization on construction design.\n  <br><br>\n  My passion is game and web app design. I spend my spare time following the IT and video game industry while I think of new innovations. ​I have also made gaming related music video collaborations on my YouTube brand channel, and been relatively successful. I am not much of an artist person but I know quite a bit about image and video editing.\n</ion-content>\n\n<!-- This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\loggedin\loggedin.html"*/,
+        selector: 'page-loggedin',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\loggedin\loggedin.html"*/'<!-- This page is shown as the "Home" page to the user. -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\loggedin\loggedin.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* App */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["b" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["b" /* AngularFireAuth */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["b" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_firebase__["a" /* FirebaseProvider */]])
 ], LoggedinPage);
 
-var _a, _b, _c, _d, _e;
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541.
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.
 //# sourceMappingURL=loggedin.js.map
 
 /***/ })

@@ -7,7 +7,7 @@ webpackJsonp([6],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuPageModule", function() { return MenuPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu__ = __webpack_require__(468);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -37,7 +37,7 @@ MenuPageModule = __decorate([
     })
 ], MenuPageModule);
 
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=menu.module.js.map
 
 /***/ }),
@@ -48,7 +48,7 @@ MenuPageModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(133);
 // This is the side menu which can be opened from the top-left corner of the user interface.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -104,18 +104,17 @@ var MenuPage = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]) === "function" && _a || Object)
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
 ], MenuPage.prototype, "nav", void 0);
 MenuPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'MenuPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-menu',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\menu\menu.html"*/'<!-- The sidebar menu -->\n\n<ion-menu [content]="content">\n\n  <ion-header>\n    <ion-navbar color="primary">\n      <ion-title>Menu</ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n  <ion-list>\n    <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n    <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>\n    {{p.title}}\n\n    </button>\n  </ion-list>\n  </ion-content>\n\n  </ion-menu>\n\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"> </ion-nav>\n\n<!-- This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\Ionic-CV\src\pages\menu\menu.html"*/,
+        selector: 'page-menu',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\menu\menu.html"*/'<!-- The sidebar menu -->\n\n<ion-menu [content]="content">\n\n  <ion-header>\n    <ion-navbar color="primary">\n      <ion-title>Menu</ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n  <ion-list>\n    <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n    <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>\n    {{p.title}}\n\n    </button>\n  </ion-list>\n  </ion-content>\n\n  </ion-menu>\n\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"> </ion-nav>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\menu\menu.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], MenuPage);
 
-var _a, _b, _c;
-// This file is part of the Ionic-CV application developed by Sampsa Kares 1501541. 
+// This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=menu.js.map
 
 /***/ })
