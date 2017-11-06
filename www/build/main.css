@@ -25203,7 +25203,7 @@ ion-navbar.toolbar {
   }
 }
 
-page-education #additem {
+page-dice #additem {
   vertical-align: middle;
   display: -webkit-box;
   display: -webkit-flex;
@@ -25216,7 +25216,7 @@ page-education #additem {
   flex-direction: column;
 }
 
-page-education #additem button {
+page-dice #additem button {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;

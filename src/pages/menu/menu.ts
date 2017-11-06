@@ -24,9 +24,9 @@ export class MenuPage {
 
   pages: PageInterface[] = [ // list of icons in the menu which can be clicked to access different pages of the app.
     { title: 'Home', pageName: 'TabsPage', tabComponent: 'LoggedinPage', index: 0, icon: 'home'},
-    { title: 'Education', pageName: 'TabsPage', tabComponent: 'EducationPage', index: 1, icon: 'book'},
-    { title: 'Experience', pageName: 'TabsPage', tabComponent: 'ExperiencePage', index: 2, icon: 'briefcase'},
-    { title: 'Skills', pageName: 'TabsPage', tabComponent: 'SkillsPage', index: 3, icon: 'cloud'},
+    { title: 'Dice', pageName: 'TabsPage', tabComponent: 'dicePage', index: 1, icon: 'ios-help-circle'},
+    { title: 'Initiative', pageName: 'TabsPage', tabComponent: 'initiativePage', index: 2, icon: 'ios-people'},
+    { title: 'Timer', pageName: 'TabsPage', tabComponent: 'timerPage', index: 3, icon: 'ios-stopwatch'},
   ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

@@ -10,9 +10,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TabsPage { // These are accessed from the "tabs.html". And this causes the HTML take the user to the named pages.
   tab1Root='LoggedinPage';
-  tab2Root='EducationPage';
-  tab3Root='ExperiencePage';
-  tab4Root='SkillsPage';
+  tab2Root='dicePage';
+  tab3Root='initiativePage';
+  tab4Root='timerPage';
   myIndex: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
