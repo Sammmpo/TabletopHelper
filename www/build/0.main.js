@@ -5938,9 +5938,10 @@ var timerPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
-        if (firebaseProvider.currentUser == " ") {
-            this.navCtrl.setRoot('LoginPage');
-        }
+        this.time = 60;
+        // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+        //   this.navCtrl.setRoot('LoginPage');
+        //   }
     }
     timerPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad timerPage');
@@ -5950,22 +5951,43 @@ var timerPage = (function () {
         __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().signOut().then(function () {
             console.log("Logged out!");
             _this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
-            //this.navCtrl.setRoot('LoginPage');
             document.location.href = 'index.html'; // reloads the app to force the user out of the member area.
         }, function (error) {
             console.log("Error!");
         });
     };
+    timerPage.prototype.timerStart = function () {
+        var _this = this;
+        if (this.timelimit.value > 3600) {
+            this.timelimit.value = 3600;
+        }
+        console.log("timer started!");
+        this.time = parseInt(this.timelimit.value);
+        clearInterval(this.timeInterval);
+        this.timeInterval = window.setInterval(function () {
+            if (_this.time > 0) {
+                _this.time -= 1;
+            }
+            else {
+                clearInterval(_this.timeInterval);
+            }
+        }, 1000);
+    };
     return timerPage;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])("timelimit"),
+    __metadata("design:type", Object)
+], timerPage.prototype, "timelimit", void 0);
 timerPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'timerPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n    <img src="http://vignette1.wikia.nocookie.net/finalfantasy/images/9/9e/BS_Crystal_Diadem.png/revision/latest?cb=20150402050623" height="150" width="100%">\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
+        selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n    <img src="http://vignette1.wikia.nocookie.net/finalfantasy/images/9/9e/BS_Crystal_Diadem.png/revision/latest?cb=20150402050623" height="150" width="100%">\n    <ion-item>\n        <ion-label>Time Limit</ion-label>\n        <ion-input type="number" min="1" max="3600" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="60" #timelimit></ion-input>\n      </ion-item>\n      <button ion-button full (click)="timerStart()">Start</button>\n      <ion-item>\n        <ion-label>Time Remaining: {{time}}</ion-label>\n      </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object])
 ], timerPage);
 
+var _a, _b, _c;
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=timer.js.map
 

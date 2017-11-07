@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../providers/auth-service/auth-service';
@@ -25,10 +25,14 @@ export class dicePage {
   @ViewChild("amount") amount;
   @ViewChild("sides") sides;
 
-  constructor(private auth: AuthService, public navParams: NavParams, public firebaseProvider: FirebaseProvider) {
+  constructor(private auth: AuthService, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public navCtrl: NavController) {
     let info = this.auth.getUserInfo();
     console.log(info);
     console.log(this.firebaseProvider.currentUser);
+
+    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+      this.navCtrl.setRoot('LoginPage');
+      }
   }
 
   public logout() {
