@@ -14,6 +14,10 @@ export class FirebaseProvider {
 
   currentUser = " "; // tells the app the username of the account that is currently using the application.
 
+  getPlayers(name) { // finds the correct database folder for the current user.
+    return this.afd.list('/users/'+name+'/');
+  }
+
   getUsers() { // returns all registered users.
     return this.afd.list('/users/');
   }
@@ -21,6 +25,14 @@ export class FirebaseProvider {
   addUser(name) { // creates the database folder and test data for a newly registered user.
     this.afd.list('/users/'+name+'/').push("data");
   }
+
+  addItem(name, currentId) { // adds an item to the current user's database folder.
+  this.afd.list('/users/'+currentId+'/').push(name);
+}
+
+removeItem(id, currentId) { // removes an item from the current user's database folder.
+  this.afd.list('/users/'+currentId+'/').remove(id);
+}
 
 
 }

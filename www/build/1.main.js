@@ -5936,14 +5936,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var initiativePage = (function () {
-    function initiativePage(navCtrl, navParams, firebaseProvider, nativeAudio) {
+    function initiativePage(navCtrl, navParams, firebaseProvider, nativeAudio, toast) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
         this.nativeAudio = nativeAudio;
-        // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-        //   this.navCtrl.setRoot('LoginPage');
-        //   }
+        this.toast = toast;
+        this.newItem = '';
+        if (firebaseProvider.currentUser == " ") {
+            this.navCtrl.setRoot('LoginPage');
+        }
+        else {
+            this.players = this.firebaseProvider.getPlayers(this.firebaseProvider.currentUser); // sends the currentUser to the 'getPlayers' function.
+            console.log(this.firebaseProvider.currentUser);
+        }
     }
     initiativePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad initiativePage');
@@ -5958,21 +5964,37 @@ var initiativePage = (function () {
             console.log("Error!");
         });
     };
-    initiativePage.prototype.play = function () {
-        var audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
-        audio.play();
+    initiativePage.prototype.addItem = function () {
+        if (this.firebaseProvider.currentUser == " ") {
+            this.navCtrl.setRoot('LoginPage');
+        }
+        else {
+            this.firebaseProvider.addItem(this.newItem, this.firebaseProvider.currentUser); // sends the new item name and the currentUser to the 'addItem' function.
+            this.toast.create({
+                message: "Item added!",
+                duration: 2000
+            }).present();
+        }
+    };
+    initiativePage.prototype.removeItem = function (id) {
+        if (this.firebaseProvider.currentUser == " ") {
+            this.navCtrl.setRoot('LoginPage');
+        }
+        else {
+            this.firebaseProvider.removeItem(id, this.firebaseProvider.currentUser); // sends the selected item name and the currentUser to the 'removeItem' function.
+        }
     };
     return initiativePage;
 }());
 initiativePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'initiativePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <img src="https://www.walldevil.com/wallpapers/w01/555186-archery-armor-arrows-battles-bow-weapon-brunettes-explosion-fantasy-fantasy-art-long-hair-warriors-women.jpg" height="150" width="100%">\n    <button ion-button full (click)="play()">SOUND</button>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
+        selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <img src="https://www.walldevil.com/wallpapers/w01/555186-archery-armor-arrows-battles-bow-weapon-brunettes-explosion-fantasy-fantasy-art-long-hair-warriors-women.jpg" height="150" width="100%">\n    <ion-row>\n        <ion-col col-9>\n          <ion-item>\n            <ion-input type="text" [(ngModel)]="newItem" placeholder="Player Name"></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col id="additem">\n          <button ion-button full (click)="addItem()">Add Player</button>\n        </ion-col>\n      </ion-row>\n    \n      <ion-list>\n        <ion-item-sliding *ngFor="let item of players | async">\n          <ion-item>\n            {{ item.$value }}\n          </ion-item>\n          <ion-item-options side="right">\n            <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button>\n          </ion-item-options>\n        </ion-item-sliding>\n        <ion-item>\n          <p>Slide players to remove them</p>\n        </ion-item>\n      </ion-list>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _e || Object])
 ], initiativePage);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=initiative.js.map
 
