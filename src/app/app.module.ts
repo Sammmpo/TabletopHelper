@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseProvider } from '../providers/firebase/firebase';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 const firebaseAuth = { // Database information that was copied from the Firebase project on browser.
     apiKey: "AIzaSyCzWvUqrOfS1596AvrcOVB2P8gNqlDAydk",
@@ -40,7 +41,8 @@ const firebaseAuth = { // Database information that was copied from the Firebase
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
     AngularFireDatabase,
-    AuthService
+    AuthService,
+    NativeAudio
   ]
 })
 export class AppModule {}

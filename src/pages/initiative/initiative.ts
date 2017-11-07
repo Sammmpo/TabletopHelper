@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import firebase from 'firebase';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @IonicPage({name: 'initiativePage'})
 @Component({
@@ -9,13 +10,16 @@ import firebase from 'firebase';
   templateUrl: 'initiative.html',
 })
 export class initiativePage {
+  nativeAudios;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider) {
-
-    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-      this.navCtrl.setRoot('LoginPage');
-      }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public nativeAudio: NativeAudio) {
+    // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+    //   this.navCtrl.setRoot('LoginPage');
+    //   }
+      this.nativeAudio.preloadSimple('uniqueId1', './beat.wav');
+      this.nativeAudio.play('uniqueId1');
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad initiativePage');
@@ -29,6 +33,11 @@ export class initiativePage {
     }, function(error) {
       console.log("Error!")
     });
+  }
+
+  public play(){
+    this.nativeAudio.play('uniqueId1');
+    console.log("play sound");
   }
 
 }

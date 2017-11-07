@@ -15,6 +15,9 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+
+  
 }
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.

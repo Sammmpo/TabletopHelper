@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import firebase from 'firebase';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @IonicPage({name: 'timerPage'})
 @Component({
@@ -14,11 +15,10 @@ export class timerPage {
   public time = 60;
   timeInterval;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider) {
-
-  // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-  //   this.navCtrl.setRoot('LoginPage');
-  //   }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
+    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+      this.navCtrl.setRoot('LoginPage');
+      }
   }
 
   ionViewDidLoad() {
