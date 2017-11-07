@@ -5944,8 +5944,6 @@ var initiativePage = (function () {
         // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
         //   this.navCtrl.setRoot('LoginPage');
         //   }
-        this.nativeAudio.preloadSimple('uniqueId1', './beat.wav');
-        this.nativeAudio.play('uniqueId1');
     }
     initiativePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad initiativePage');
@@ -5961,8 +5959,8 @@ var initiativePage = (function () {
         });
     };
     initiativePage.prototype.play = function () {
-        this.nativeAudio.play('uniqueId1');
-        console.log("play sound");
+        var audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
+        audio.play();
     };
     return initiativePage;
 }());
@@ -5971,9 +5969,10 @@ initiativePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
         selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <img src="https://www.walldevil.com/wallpapers/w01/555186-archery-armor-arrows-battles-bow-weapon-brunettes-explosion-fantasy-fantasy-art-long-hair-warriors-women.jpg" height="150" width="100%">\n    <button ion-button full (click)="play()">SOUND</button>\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object])
 ], initiativePage);
 
+var _a, _b, _c, _d;
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=initiative.js.map
 

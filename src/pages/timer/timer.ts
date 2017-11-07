@@ -14,6 +14,7 @@ export class timerPage {
   @ViewChild("timelimit") timelimit;
   public time = 60;
   timeInterval;
+  audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
@@ -46,7 +47,10 @@ export class timerPage {
     clearInterval(this.timeInterval);
     this.timeInterval = window.setInterval(() => {
       if (this.time > 0) { this.time -= 1; }
-      else { clearInterval(this.timeInterval); }
+      else {
+        clearInterval(this.timeInterval);
+        this.audio.play();
+      }
     }, 1000)
 
 

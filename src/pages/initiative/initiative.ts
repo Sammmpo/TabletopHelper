@@ -10,14 +10,11 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'initiative.html',
 })
 export class initiativePage {
-  nativeAudios;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public nativeAudio: NativeAudio) {
     // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
     //   this.navCtrl.setRoot('LoginPage');
     //   }
-      this.nativeAudio.preloadSimple('uniqueId1', './beat.wav');
-      this.nativeAudio.play('uniqueId1');
   }
 
 
@@ -36,8 +33,8 @@ export class initiativePage {
   }
 
   public play(){
-    this.nativeAudio.play('uniqueId1');
-    console.log("play sound");
+    var audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
+    audio.play();
   }
 
 }
