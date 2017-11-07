@@ -18,7 +18,7 @@ export class timerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-      this.navCtrl.setRoot('LoginPage');
+      document.location.href = 'index.html'; 
       }
   }
 
@@ -53,11 +53,6 @@ export class timerPage {
       }
     }, 1000)
 
-
   }
-
-
-
-
 }
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.

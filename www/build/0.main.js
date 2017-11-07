@@ -5944,7 +5944,7 @@ var timerPage = (function () {
         this.time = 60;
         this.audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
         if (firebaseProvider.currentUser == " ") {
-            this.navCtrl.setRoot('LoginPage');
+            document.location.href = 'index.html';
         }
     }
     timerPage.prototype.ionViewDidLoad = function () {

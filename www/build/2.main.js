@@ -5944,9 +5944,8 @@ var homePage = (function () {
         this.fire = fire;
         this.firebaseProvider = firebaseProvider;
         this.email = fire.auth.currentUser.email;
-        //this.name = fire.auth.currentUser.displayName;
         if (firebaseProvider.currentUser == " ") {
-            this.navCtrl.setRoot('LoginPage');
+            document.location.href = 'index.html';
         }
     }
     homePage.prototype.ionViewDidLoad = function () {

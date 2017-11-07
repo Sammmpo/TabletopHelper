@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { FirebaseListObservable } from 'angularfire2/database';
@@ -12,11 +12,13 @@ import { NativeAudio } from '@ionic-native/native-audio';
 })
 export class initiativePage {
   players: FirebaseListObservable<any[]>;
+  playerArray = [];
   newItem = '';
+  //@ViewChild("playerAmount") playerAmount;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public nativeAudio: NativeAudio, public toast: ToastController) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-     this.navCtrl.setRoot('LoginPage');
+      document.location.href = 'index.html'; 
     } else {
       this.players = this.firebaseProvider.getPlayers(this.firebaseProvider.currentUser); // sends the currentUser to the 'getPlayers' function.
       console.log(this.firebaseProvider.currentUser);
@@ -44,7 +46,7 @@ export class initiativePage {
       } else {
         this.firebaseProvider.addItem(this.newItem, this.firebaseProvider.currentUser); // sends the new item name and the currentUser to the 'addItem' function.
         this.toast.create({ // gives feedback to the user for their action.
-          message: `Item added!`,
+          message: 'Item added!',
           duration: 2000
           }).present();
       }
@@ -56,6 +58,25 @@ export class initiativePage {
       } else {
         this.firebaseProvider.removeItem(id, this.firebaseProvider.currentUser); // sends the selected item name and the currentUser to the 'removeItem' function.
       }
+  }
+
+  public selectRandom(){ // Using DOM instead of ionic/firebase tools, could see change.
+    console.log("selecting random!");
+    this.playerArray = [];
+    for (let i = 0; i < parseInt(document.getElementById('playerAmount').innerHTML); i++) { 
+        var playerId = document.getElementById(""+i+"").innerHTML;
+        
+      if (playerId.length > 0){
+        this.playerArray.push(playerId);
+      }
+    
+    }
+    console.log(this.playerArray);
+    for (let i = 0; i < this.playerArray.length; i++){
+      document.getElementById(""+i+"").style.color = "black";
+    }
+    document.getElementById(""+Math.floor(Math.random() * this.playerArray.length)+"").style.color = "blue";
+    console.log(this.players);
   }
 
 }

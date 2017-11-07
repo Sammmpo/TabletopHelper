@@ -18,9 +18,8 @@ export class homePage {
 
   constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public firebaseProvider: FirebaseProvider) {
    this.email = fire.auth.currentUser.email;
-   //this.name = fire.auth.currentUser.displayName;
    if (firebaseProvider.currentUser == " "){
-    this.navCtrl.setRoot('LoginPage');
+    document.location.href = 'index.html'; 
     }
   }
 

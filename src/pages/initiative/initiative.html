@@ -32,9 +32,10 @@
       </ion-row>
     
       <ion-list>
-        <ion-item-sliding *ngFor="let item of players | async">
+        <ion-item-sliding *ngFor="let item of players | async; let i = index">
           <ion-item>
-            {{ item.$value }}
+            <span #f{{i}} id={{i}}>{{ item.$value }}</span>
+            <!-- <input #item.$value id="f{{item.$value}}" [ngModel]="item.value" required #f="ngModel" /> -->
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button>
@@ -44,6 +45,8 @@
           <p>Slide players to remove them</p>
         </ion-item>
       </ion-list>
+      <label><span>Total of </span><span id="playerAmount">{{(players | async)?.length}}</span><span> players!</span></label>
+      <button ion-button full (click)="selectRandom()">Roll Initiative</button>
   </ion-content>
 
 <!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->

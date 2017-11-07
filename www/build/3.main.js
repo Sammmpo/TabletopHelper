@@ -5951,7 +5951,7 @@ var dicePage = (function () {
         console.log(info);
         console.log(this.firebaseProvider.currentUser);
         if (firebaseProvider.currentUser == " ") {
-            this.navCtrl.setRoot('LoginPage');
+            document.location.href = 'index.html';
         }
     }
     dicePage.prototype.logout = function () {
