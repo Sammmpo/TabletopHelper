@@ -5964,14 +5964,22 @@ var dicePage = (function () {
         console.log('ionViewDidLoad ListPage');
     };
     dicePage.prototype.rollDice = function () {
-        console.log("rolling the dice!");
-        this.diceList = [];
-        for (var i = 0; i < this.amount.value; i++) {
-            this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
-            console.log(this.randomNumber);
-            this.diceList.push(this.randomNumber);
+        if (this.sides.value > 144) {
+            this.sides.value = 144;
         }
-        this.ngAfterViewInit();
+        if (this.amount.value > 30) {
+            this.amount.value = 30;
+        }
+        if (this.sides.value < 144 || this.amount.value < 30) {
+            console.log("rolling the dice!");
+            this.diceList = [];
+            for (var i = 0; i < this.amount.value; i++) {
+                this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
+                console.log(this.randomNumber);
+                this.diceList.push(this.randomNumber);
+            }
+            this.ngAfterViewInit();
+        }
     };
     dicePage.prototype.ngAfterViewInit = function () {
         this.results = "";
@@ -6004,7 +6012,7 @@ __decorate([
 dicePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'dicePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-dice',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/'<!-- Dice page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Dice</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-item>\n      <ion-label>Dice Amount:</ion-label>\n      <ion-input type="text" id="amount" placeholder="#" value="1" #amount></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Side Amount:</ion-label>\n      <ion-input id="sides" placeholder="#" value="6" #sides></ion-input>\n    </ion-item>\n    <button ion-button full (click)="rollDice()">Roll</button>\n    <ion-item>\n      <ion-label>Results: {{results}}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label>Total: {{total}}</ion-label>\n    </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/,
+        selector: 'page-dice',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/'<!-- Dice page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Dice</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-item>\n      <ion-label>Dice Amount:</ion-label>\n      <ion-input type="number" min="1" max="30" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="1" #amount></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Side Amount:</ion-label>\n      <ion-input type="number" min="2" max="144" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' id="sides" placeholder="#" value="6" #sides></ion-input>\n    </ion-item>\n    <button ion-button full (click)="rollDice()">Roll</button>\n    <ion-item>\n      <ion-label>Results: {{results}}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label>Total: {{total}}</ion-label>\n    </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object])
 ], dicePage);

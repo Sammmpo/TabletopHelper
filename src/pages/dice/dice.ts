@@ -46,14 +46,20 @@ export class dicePage {
   }
 
   public rollDice(){
-    console.log("rolling the dice!");
-    this.diceList = [];
-    for (let i = 0; i < this.amount.value; i++){
-      this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
-      console.log(this.randomNumber);
-      this.diceList.push(this.randomNumber);
+    if (this.sides.value > 144) { this.sides.value = 144; }
+    if (this.amount.value > 30) { this.amount.value = 30; }
+
+    if (this.sides.value < 144 || this.amount.value < 30) {
+      console.log("rolling the dice!");
+      this.diceList = [];
+      for (let i = 0; i < this.amount.value; i++){
+        this.randomNumber = Math.floor(Math.random() * this.sides.value + 1);
+        console.log(this.randomNumber);
+        this.diceList.push(this.randomNumber);
+      }
+      this.ngAfterViewInit()
     }
-    this.ngAfterViewInit();
+
   }
 
   ngAfterViewInit() {
