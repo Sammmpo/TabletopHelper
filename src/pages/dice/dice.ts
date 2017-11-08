@@ -31,7 +31,7 @@ export class dicePage {
     console.log(this.firebaseProvider.currentUser);
 
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-      document.location.href = 'index.html'; 
+      document.location.href = 'index.html';
       }
   }
 

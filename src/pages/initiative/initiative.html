@@ -34,18 +34,14 @@
       <ion-list>
         <ion-item-sliding *ngFor="let item of players | async; let i = index">
           <ion-item>
-            <span #f{{i}} id={{i}}>{{ item.$value }}</span>
-            <!-- <input #item.$value id="f{{item.$value}}" [ngModel]="item.value" required #f="ngModel" /> -->
+            <span #f{{i}} id={{i}}>{{ item.$value }} </span><input placeholder="Add notes" style="float: right; text-align: center" />
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button>
           </ion-item-options>
         </ion-item-sliding>
-        <ion-item>
-          <p>Slide players to remove them</p>
-        </ion-item>
       </ion-list>
-      <label><span>Total of </span><span id="playerAmount">{{(players | async)?.length}}</span><span> players!</span></label>
+      <span id="playerAmount" style="display: none">{{(players | async)?.length}}</span>
       <button ion-button full (click)="selectRandom()">Roll Initiative</button>
   </ion-content>
 

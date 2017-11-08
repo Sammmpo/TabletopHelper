@@ -18,7 +18,7 @@ export class timerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-      document.location.href = 'index.html'; 
+      document.location.href = 'index.html';
       }
   }
 
@@ -28,7 +28,7 @@ export class timerPage {
 
   public logout() {
     firebase.auth().signOut().then(() => {
-      console.log("Logged out!")
+      console.log("Logged out!");
       this.firebaseProvider.currentUser = " "; // sets the currentUser to nobody.
       document.location.href = 'index.html'; // reloads the app to force the user out of the member area.
     }, function(error) {

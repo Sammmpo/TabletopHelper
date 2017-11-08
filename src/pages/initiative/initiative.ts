@@ -18,7 +18,7 @@ export class initiativePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public nativeAudio: NativeAudio, public toast: ToastController) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-      document.location.href = 'index.html'; 
+      document.location.href = 'index.html';
     } else {
       this.players = this.firebaseProvider.getPlayers(this.firebaseProvider.currentUser); // sends the currentUser to the 'getPlayers' function.
       console.log(this.firebaseProvider.currentUser);
@@ -65,18 +65,15 @@ export class initiativePage {
     this.playerArray = [];
     for (let i = 0; i < parseInt(document.getElementById('playerAmount').innerHTML); i++) { 
         var playerId = document.getElementById(""+i+"").innerHTML;
-        
-      if (playerId.length > 0){
         this.playerArray.push(playerId);
-      }
-    
     }
     console.log(this.playerArray);
-    for (let i = 0; i < this.playerArray.length; i++){
-      document.getElementById(""+i+"").style.color = "black";
+    if (this.playerArray.length > 0){
+      for (let i = 0; i < this.playerArray.length; i++){
+        document.getElementById(""+i+"").style.color = "black";
+      }
+      document.getElementById(""+Math.floor(Math.random() * this.playerArray.length)+"").style.color = "blue";
     }
-    document.getElementById(""+Math.floor(Math.random() * this.playerArray.length)+"").style.color = "blue";
-    console.log(this.players);
   }
 
 }

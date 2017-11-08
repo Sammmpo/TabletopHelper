@@ -19,7 +19,7 @@ export class homePage {
   constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public firebaseProvider: FirebaseProvider) {
    this.email = fire.auth.currentUser.email;
    if (firebaseProvider.currentUser == " "){
-    document.location.href = 'index.html'; 
+    document.location.href = 'index.html';
     }
   }
 
