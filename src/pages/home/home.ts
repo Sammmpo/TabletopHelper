@@ -18,7 +18,7 @@ export class homePage {
 
   constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public firebaseProvider: FirebaseProvider) {
    this.email = fire.auth.currentUser.email;
-   if (firebaseProvider.currentUser == " "){
+   if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, restart the app.
     document.location.href = 'index.html';
     }
   }

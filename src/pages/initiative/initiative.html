@@ -32,17 +32,18 @@
       </ion-row>
     
       <ion-list>
-        <ion-item-sliding *ngFor="let item of players | async; let i = index">
+        <ion-item-sliding *ngFor="let item of players | async; let i = index"> <!-- lists all items aka players from the FirebaseListObservable to the template -->
           <ion-item>
-            <span #f{{i}} id={{i}}>{{ item.$value }} </span><input placeholder="Add notes" style="float: right; text-align: center" />
+            <span #f{{i}} id={{i}}>{{ item.$value }} </span> <!-- Item name aka player name -->
+            <input placeholder="Add notes" style="float: right; text-align: center" /> <!-- Input field for user to add notes. Only available until closing the app. -->
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button>
+            <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button> <!-- unique button for removing each player -->
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
-      <span id="playerAmount" style="display: none">{{(players | async)?.length}}</span>
-      <button ion-button full (click)="selectRandom()">Roll Initiative</button>
+      <span id="playerAmount" style="display: none">{{(players | async)?.length}}</span> <!-- Reads the FirebaseListObservable and gives the length of items in the folder -->
+      <button ion-button full (click)="selectRandom()">Roll Initiative</button> <!-- Choose one random player -->
   </ion-content>
 
 <!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->

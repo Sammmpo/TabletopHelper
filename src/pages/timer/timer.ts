@@ -14,10 +14,10 @@ export class timerPage {
   @ViewChild("timelimit") timelimit;
   public time = 60;
   timeInterval;
-  audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
+  audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3'); // Audio that can be played when the time is out.
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
-    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, restart the app.
       document.location.href = 'index.html';
       }
   }
@@ -39,19 +39,19 @@ export class timerPage {
 
   public timerStart() {
 
-    if (this.timelimit.value > 3600) { this.timelimit.value = 3600; }
+    if (this.timelimit.value > 3600) { this.timelimit.value = 3600; } // If user gives a value longer than 1 hour, change it to 1 hour because we don't want that.
     console.log("timer started!");
 
-    this.time = parseInt(this.timelimit.value);
+    this.time = parseInt(this.timelimit.value); // User input is string, so we turn it to integer.
 
-    clearInterval(this.timeInterval);
+    clearInterval(this.timeInterval); // Reset the timer to prevent one timer running multiple timers at the same time. It would not make any sense.
     this.timeInterval = window.setInterval(() => {
-      if (this.time > 0) { this.time -= 1; }
+      if (this.time > 0) { this.time -= 1; } // reduce time by 1
       else {
         clearInterval(this.timeInterval);
-        this.audio.play();
+        this.audio.play(); // play audio
       }
-    }, 1000)
+    }, 1000) // each second
 
   }
 }

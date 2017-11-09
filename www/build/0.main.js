@@ -5942,7 +5942,7 @@ var timerPage = (function () {
         this.firebaseProvider = firebaseProvider;
         this.NativeAudio = NativeAudio;
         this.time = 60;
-        this.audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3');
+        this.audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3'); // Audio that can be played when the time is out.
         if (firebaseProvider.currentUser == " ") {
             document.location.href = 'index.html';
         }
@@ -5964,19 +5964,19 @@ var timerPage = (function () {
         var _this = this;
         if (this.timelimit.value > 3600) {
             this.timelimit.value = 3600;
-        }
+        } // If user gives a value longer than 1 hour, change it to 1 hour because we don't want that.
         console.log("timer started!");
-        this.time = parseInt(this.timelimit.value);
-        clearInterval(this.timeInterval);
+        this.time = parseInt(this.timelimit.value); // User input is string, so we turn it to integer.
+        clearInterval(this.timeInterval); // Reset the timer to prevent one timer running multiple timers at the same time. It would not make any sense.
         this.timeInterval = window.setInterval(function () {
             if (_this.time > 0) {
                 _this.time -= 1;
-            }
+            } // reduce time by 1
             else {
                 clearInterval(_this.timeInterval);
-                _this.audio.play();
+                _this.audio.play(); // play audio
             }
-        }, 1000);
+        }, 1000); // each second
     };
     return timerPage;
 }());

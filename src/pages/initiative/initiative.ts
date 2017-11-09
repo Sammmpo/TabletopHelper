@@ -17,7 +17,7 @@ export class initiativePage {
   //@ViewChild("playerAmount") playerAmount;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public nativeAudio: NativeAudio, public toast: ToastController) {
-    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, restart the app.
       document.location.href = 'index.html';
     } else {
       this.players = this.firebaseProvider.getPlayers(this.firebaseProvider.currentUser); // sends the currentUser to the 'getPlayers' function.
@@ -40,7 +40,7 @@ export class initiativePage {
     });
   }
 
-  public addItem() {
+  public addItem() { // Items aka player names.
     if (this.firebaseProvider.currentUser == " "){
       this.navCtrl.setRoot('LoginPage');
       } else {
@@ -62,17 +62,18 @@ export class initiativePage {
 
   public selectRandom(){ // Using DOM instead of ionic/firebase tools, could see change.
     console.log("selecting random!");
-    this.playerArray = [];
-    for (let i = 0; i < parseInt(document.getElementById('playerAmount').innerHTML); i++) { 
+    this.playerArray = []; // reset the array
+    for (let i = 0; i < parseInt(document.getElementById('playerAmount').innerHTML); i++) { // Uses the element in template to find out the amount of players.
+      // then push each player to the array.
         var playerId = document.getElementById(""+i+"").innerHTML;
         this.playerArray.push(playerId);
     }
     console.log(this.playerArray);
     if (this.playerArray.length > 0){
       for (let i = 0; i < this.playerArray.length; i++){
-        document.getElementById(""+i+"").style.color = "black";
+        document.getElementById(""+i+"").style.color = "black"; // Resets all player names to black.
       }
-      document.getElementById(""+Math.floor(Math.random() * this.playerArray.length)+"").style.color = "blue";
+      document.getElementById(""+Math.floor(Math.random() * this.playerArray.length)+"").style.color = "blue"; // Recolors one random player name to blue.
     }
   }
 
