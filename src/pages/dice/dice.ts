@@ -12,7 +12,7 @@ import firebase from 'firebase';
 })
 
 export class dicePage {
-  shoppingItems: FirebaseListObservable<any[]>;
+ // Setting up variables.
   newItem = ''; 
   username = '';
   email = '';
@@ -20,6 +20,7 @@ export class dicePage {
   total = 0;
   diceList = [];
   randomNumber;
+  // Read the following #element from our template.
   @ViewChild('username') user;
   @ViewChild('password') password;
   @ViewChild("amount") amount;
@@ -30,7 +31,7 @@ export class dicePage {
     console.log(info);
     console.log(this.firebaseProvider.currentUser);
 
-    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
+    if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, restart the app.
       document.location.href = 'index.html';
       }
   }
@@ -50,9 +51,11 @@ export class dicePage {
   }
 
   public rollDice(){
+    // Changes input if the number is too large for the app.
     if (this.sides.value > 144) { this.sides.value = 144; }
     if (this.amount.value > 30) { this.amount.value = 30; }
 
+    // If both requirements are met, reset the array and start re-filling it with dice roll results.
     if (this.sides.value < 144 || this.amount.value < 30) {
       console.log("rolling the dice!");
       this.diceList = [];
@@ -61,13 +64,14 @@ export class dicePage {
         console.log(this.randomNumber);
         this.diceList.push(this.randomNumber);
       }
-      this.ngAfterViewInit()
+      this.ngAfterViewInit() // Run update.
     }
 
   }
 
   ngAfterViewInit() {
-    this.results = "";
+    // First reset the variables, then use the recently filled array to give them new values.
+    this.results = ""; 
     this.total = 0;
     for (let i = 0; i < this.diceList.length; i++){
       this.results += this.diceList[i]+" ";

@@ -20,21 +20,23 @@
 
 <ion-content padding>
 
-    <img src="https://homeschoolersanonymous.files.wordpress.com/2014/09/dungeons-dragons-dice-roller-6275.jpg?w=1200" height="150" width="100%">
+    <img src="../assets/images/dice.jpg" height="150" width="100%"> <!-- Banner image -->
     <ion-item>
       <ion-label>Dice Amount:</ion-label>
+      <!-- Input validation, we only want values between 1 and 30 (30 is a cap to make the app run smoothly) -->
       <ion-input type="number" min="1" max="30" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="#" value="1" #amount></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Side Amount:</ion-label>
+      <!-- Input validation, we only want values between 2 and 144 (all possible dice sizes) -->
       <ion-input type="number" min="2" max="144" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="sides" placeholder="#" value="6" #sides></ion-input>
     </ion-item>
-    <button ion-button full (click)="rollDice()">Roll</button>
+    <button ion-button full (click)="rollDice()">Roll</button> <!-- Button to run rollDice() function -->
     <ion-item>
-      <ion-label>Results: {{results}}</ion-label>
+      <ion-label>Results: {{results}}</ion-label> <!-- Display results variable -->
     </ion-item>
     <ion-item>
-      <ion-label>Total: {{total}}</ion-label>
+      <ion-label>Total: {{total}}</ion-label> <!-- Display total variable -->
     </ion-item>
 
 </ion-content>
