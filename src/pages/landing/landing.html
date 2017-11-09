@@ -1,22 +1,42 @@
 <!-- This is the landing page for the application -->
 
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title class=centeredText>
-      Tabletop Helper
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-slides pager>
 
+    <ion-slide class="bg-image" style="background-image: url('../assets/images/forest-fantasy.jpg')">
+    <div class="titlebox">
+    <h1 style="color: #ebebeb">TableTopHelper</h1>
+    <h5 style="color: #ebebeb">For better experiences</h5>
+  </div>
+    <div style="position:absolute; bottom: 120px; text-align:center; z-index:1000; width:100%">
+        <button ion-button (click)="signIn()" item-left>Sign In</button>
+        <button ion-button (click)="register()" item-left>Register</button>
+    </div>
+  </ion-slide>
 
-<ion-content padding color="primary">
+  <ion-slide class="bg-image" style="background-image: url('../assets/images/dice.jpg')">
+    <ion-icon ios="ios-help-circle" md="ios-help-circle" style="zoom:5.0;"></ion-icon>
+    <div class="titlebox">
+    <h1 style="color: #ebebeb">Dice</h1>
+    <h5 style="color: #ebebeb">Roll a dice of any size</h5>
+  </div>
+  </ion-slide>
 
-  <img src="https://nerdist.com/wp-content/uploads/2015/08/Dungeons-and-Dragons-movie.jpg" height="150" width="100%">
-  <div id="topButtons">
-	<button ion-button (click)="signIn()" item-left>Sign In</button>
-	<button ion-button (click)="register()" item-left>Register</button>
-	</div>
+  <ion-slide class="bg-image" style="background-image: url('../assets/images/initiative.jpg')">
+    <ion-icon ios="ios-people" md="ios-people" style="zoom:5.0;"></ion-icon>
+    <div class="titlebox">
+    <h1 style="color: #ebebeb">Initiative</h1>
+    <h5 style="color: #ebebeb">Choose who goes first</h5>
+  </div>
+  </ion-slide>
 
-</ion-content>
+  <ion-slide class="bg-image" style="background-image: url('../assets/images/timer.jpg')">
+    <ion-icon ios="ios-stopwatch" md="ios-stopwatch" style="zoom:5.0;"></ion-icon>
+    <div class="titlebox">
+    <h1 style="color: #ebebeb">Timer</h1>
+    <h5 style="color: #ebebeb">Play against time</h5>
+  </div>
+  </ion-slide>
+
+</ion-slides>
 
 <!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->

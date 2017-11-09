@@ -7,6 +7,25 @@ page-landing {
 	#topButtons button {
 		flex: 1;
 	}
+	.swiper-pagination-bullet-active {
+		background: white;
+	}
+	.bg-image {
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.padding {
+		padding-bottom: 100px;
+	}
+
+	.titlebox {
+		background-color:rgba(0, 0, 0, 0.35);
+		color: black;
+		padding-top: 1px;
+		padding-bottom: 5px;
+	}
 }
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen.

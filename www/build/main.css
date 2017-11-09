@@ -25203,6 +25203,15 @@ ion-navbar.toolbar {
   }
 }
 
+@font-face {
+  font-family: BalooBhai;
+  src: url("../assets/fonts/BalooBhai.woff2") format("woff2");
+}
+
+* {
+  font-family: BalooBhai;
+}
+
 page-dice #additem {
   vertical-align: middle;
   display: -webkit-box;
@@ -25241,4 +25250,25 @@ page-landing #topButtons button {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+
+page-landing .swiper-pagination-bullet-active {
+  background: white;
+}
+
+page-landing .bg-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+page-landing .padding {
+  padding-bottom: 100px;
+}
+
+page-landing .titlebox {
+  background-color: rgba(0, 0, 0, 0.35);
+  color: black;
+  padding-top: 1px;
+  padding-bottom: 5px;
 }
