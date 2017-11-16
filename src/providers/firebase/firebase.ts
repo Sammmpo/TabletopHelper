@@ -18,10 +18,6 @@ export class FirebaseProvider {
     return this.afd.list('/users/'+name+'/');
   }
 
-  getPlayersLength(name) {
-    return this.afd.list('/users/'+name+'/').long;
-  }
-
   getUsers() { // returns all registered users.
     return this.afd.list('/users/');
   }
