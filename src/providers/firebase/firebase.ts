@@ -15,8 +15,11 @@ export class FirebaseProvider {
   currentUser = " "; // tells the app the username of the account that is currently using the application.
 
   getPlayers(name) { // finds the correct database folder for the current user.
-    console.log(this.afd.list('/users/'+name+'/'));
     return this.afd.list('/users/'+name+'/');
+  }
+
+  getPlayersLength(name) {
+    return this.afd.list('/users/'+name+'/').long;
   }
 
   getUsers() { // returns all registered users.
