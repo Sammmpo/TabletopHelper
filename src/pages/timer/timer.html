@@ -22,14 +22,24 @@
 <ion-content padding>
 
     <img src="../assets/images/timer.jpg" height="150" width="100%">
+
     <ion-item>
         <ion-label>Time Limit</ion-label>
         <ion-input type="number" min="1" max="3600" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="#" value="60" #timelimit></ion-input>
-      </ion-item>
-      <button ion-button full (click)="timerStart()">Start</button>
-      <ion-item>
-        <ion-label>Time Remaining: {{time}}</ion-label>
-      </ion-item>
+    </ion-item>
+
+    <button ion-button full (click)="timerStart()">Start Classic Timer</button>
+    <ion-item>
+       <ion-label>Time: {{time}}</ion-label>
+    </ion-item>
+
+    <button ion-button full (click)="finishTurn()">Start Chess Timer</button>
+    <ion-item>
+        <ion-label>Time:  {{time1}}</ion-label>
+        <ion-label>Time:  {{time2}}</ion-label>
+    </ion-item>
+
+    <button ion-button small full (click)="resetTime()">Reset All</button>
 
 </ion-content>
 
