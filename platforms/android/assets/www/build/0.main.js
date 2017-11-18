@@ -5941,10 +5941,15 @@ var timerPage = (function () {
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
         this.NativeAudio = NativeAudio;
+        this.audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3'); // Audio that can be played when the time is out.
         this.time = 60;
-        // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-        //   this.navCtrl.setRoot('LoginPage');
-        //   }
+        this.timerRunning = false;
+        this.player1turn = false;
+        this.time1 = 60;
+        this.time2 = 60;
+        if (firebaseProvider.currentUser == " ") {
+            document.location.href = 'index.html';
+        }
     }
     timerPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad timerPage');
@@ -5961,20 +5966,75 @@ var timerPage = (function () {
     };
     timerPage.prototype.timerStart = function () {
         var _this = this;
+        clearInterval(this.timeInterval);
         if (this.timelimit.value > 3600) {
             this.timelimit.value = 3600;
-        }
+        } // If user gives a value longer than 1 hour, change it to 1 hour because we don't want that.
         console.log("timer started!");
-        this.time = parseInt(this.timelimit.value);
-        clearInterval(this.timeInterval);
+        this.time = parseInt(this.timelimit.value); // User input is string, so we turn it to integer.
+        clearInterval(this.timeInterval); // Reset the timer to prevent one timer running multiple timers at the same time. It would not make any sense.
         this.timeInterval = window.setInterval(function () {
             if (_this.time > 0) {
                 _this.time -= 1;
-            }
+            } // reduce time by 1
             else {
                 clearInterval(_this.timeInterval);
+                _this.audio.play(); // play audio
             }
-        }, 1000);
+        }, 1000); // each second
+    };
+    timerPage.prototype.resetTime = function () {
+        clearInterval(this.timeInterval);
+        clearInterval(this.timeInterval1);
+        clearInterval(this.timeInterval2);
+        this.timerRunning = false;
+        this.player1turn = false;
+        if (this.timelimit.value > 3600) {
+            this.timelimit.value = 3600;
+        }
+        this.time = parseInt(this.timelimit.value);
+        this.time1 = parseInt(this.timelimit.value);
+        this.time2 = parseInt(this.timelimit.value);
+        console.log("reset time");
+    };
+    timerPage.prototype.finishTurn = function () {
+        var _this = this;
+        clearInterval(this.timeInterval1);
+        clearInterval(this.timeInterval2);
+        if (this.timerRunning == false) {
+            if (this.timelimit.value > 3600) {
+                this.timelimit.value = 3600;
+            } // If user gives a value longer than 1 hour, change it to 1 hour because we don't want that.
+            this.timerRunning = true;
+            this.time1 = parseInt(this.timelimit.value);
+            this.time2 = parseInt(this.timelimit.value);
+            console.log("timer started!");
+        }
+        this.player1turn = !this.player1turn; // toggle, first time turns this variable into 'true'.
+        if (this.player1turn == true) {
+            this.timeInterval1 = window.setInterval(function () {
+                if (_this.time1 > 0) {
+                    _this.time1 -= 1;
+                } // reduce player1 time by 1
+                else {
+                    clearInterval(_this.timeInterval1);
+                    _this.timerRunning = false;
+                    _this.audio.play(); // play audio
+                }
+            }, 1000); // each second
+        }
+        else {
+            this.timeInterval2 = window.setInterval(function () {
+                if (_this.time2 > 0) {
+                    _this.time2 -= 1;
+                } // reduce player2 time by 1
+                else {
+                    clearInterval(_this.timeInterval2);
+                    _this.timerRunning = false;
+                    _this.audio.play(); // play audio
+                }
+            }, 1000); // each second
+        }
     };
     return timerPage;
 }());
@@ -5985,11 +6045,12 @@ __decorate([
 timerPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'timerPage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n    <img src="http://vignette1.wikia.nocookie.net/finalfantasy/images/9/9e/BS_Crystal_Diadem.png/revision/latest?cb=20150402050623" height="150" width="100%">\n    <ion-item>\n        <ion-label>Time Limit</ion-label>\n        <ion-input type="number" min="1" max="3600" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="60" #timelimit></ion-input>\n      </ion-item>\n      <button ion-button full (click)="timerStart()">Start</button>\n      <ion-item>\n        <ion-label>Time Remaining: {{time}}</ion-label>\n      </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
+        selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n    <img src="../assets/images/timer.jpg" height="150" width="100%">\n\n    <ion-item>\n        <ion-label>Time Limit</ion-label>\n        <ion-input type="number" min="1" max="3600" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="60" #timelimit></ion-input>\n    </ion-item>\n\n    <button ion-button full (click)="timerStart()">Start Classic Timer</button>\n    <ion-item>\n       <ion-label>Time: {{time}}</ion-label>\n    </ion-item>\n\n    <button ion-button full (click)="finishTurn()">Start Chess Timer</button>\n    <ion-item>\n        <ion-label>Time:  {{time1}}</ion-label>\n        <ion-label>Time:  {{time2}}</ion-label>\n    </ion-item>\n\n    <button ion-button small full (click)="resetTime()">Reset All</button>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object])
 ], timerPage);
 
+var _a, _b, _c, _d;
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=timer.js.map
 

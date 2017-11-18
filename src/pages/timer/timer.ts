@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import firebase from 'firebase';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { Vibration } from '@ionic-native/vibration';
 
 @IonicPage({name: 'timerPage'})
 @Component({
@@ -14,9 +15,11 @@ export class timerPage {
   @ViewChild("timelimit") timelimit;
   audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3'); // Audio that can be played when the time is out.
 
+  // classic timer variables:
   public time = 60;
   timeInterval;
 
+  // chess timer variables:
   public timerRunning = false;
   public player1turn = false;
   public time1 = 60;
@@ -24,10 +27,15 @@ export class timerPage {
   timeInterval1;
   timeInterval2;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider, public NativeAudio: NativeAudio, private vibration: Vibration) {
     if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, restart the app.
       document.location.href = 'index.html';
       }
+  }
+
+  public vibrate() {
+    this.vibration.vibrate(1000); // vibrate
+    console.log("vibrates!");
   }
 
   ionViewDidLoad() {
@@ -59,6 +67,7 @@ export class timerPage {
       if (this.time > 0) { this.time -= 1; } // reduce time by 1
       else {
         clearInterval(this.timeInterval);
+        this.vibrate();
         this.audio.play(); // play audio
       }
     }, 1000) // each second
@@ -99,6 +108,7 @@ export class timerPage {
         else {
           clearInterval(this.timeInterval1);
           this.timerRunning = false;
+          this.vibrate();
           this.audio.play(); // play audio
         }
       }, 1000) // each second
@@ -108,6 +118,7 @@ export class timerPage {
         else {
           clearInterval(this.timeInterval2);
           this.timerRunning = false;
+          this.vibrate();
           this.audio.play(); // play audio
         }
       }, 1000) // each second

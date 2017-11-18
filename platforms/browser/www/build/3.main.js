@@ -5941,6 +5941,7 @@ var dicePage = (function () {
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
         this.navCtrl = navCtrl;
+        // Setting up variables.
         this.newItem = '';
         this.username = '';
         this.email = '';
@@ -5951,7 +5952,7 @@ var dicePage = (function () {
         console.log(info);
         console.log(this.firebaseProvider.currentUser);
         if (firebaseProvider.currentUser == " ") {
-            this.navCtrl.setRoot('LoginPage');
+            document.location.href = 'index.html';
         }
     }
     dicePage.prototype.logout = function () {
@@ -5968,12 +5969,14 @@ var dicePage = (function () {
         console.log('ionViewDidLoad ListPage');
     };
     dicePage.prototype.rollDice = function () {
+        // Changes input if the number is too large for the app.
         if (this.sides.value > 144) {
             this.sides.value = 144;
         }
         if (this.amount.value > 30) {
             this.amount.value = 30;
         }
+        // If both requirements are met, reset the array and start re-filling it with dice roll results.
         if (this.sides.value < 144 || this.amount.value < 30) {
             console.log("rolling the dice!");
             this.diceList = [];
@@ -5982,10 +5985,11 @@ var dicePage = (function () {
                 console.log(this.randomNumber);
                 this.diceList.push(this.randomNumber);
             }
-            this.ngAfterViewInit();
+            this.ngAfterViewInit(); // Run update.
         }
     };
     dicePage.prototype.ngAfterViewInit = function () {
+        // First reset the variables, then use the recently filled array to give them new values.
         this.results = "";
         this.total = 0;
         for (var i = 0; i < this.diceList.length; i++) {
@@ -6016,7 +6020,7 @@ __decorate([
 dicePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'dicePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-dice',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/'<!-- Dice page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Dice</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <img src="https://homeschoolersanonymous.files.wordpress.com/2014/09/dungeons-dragons-dice-roller-6275.jpg?w=1200" height="150" width="100%">\n    <ion-item>\n      <ion-label>Dice Amount:</ion-label>\n      <ion-input type="number" min="1" max="30" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="1" #amount></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Side Amount:</ion-label>\n      <ion-input type="number" min="2" max="144" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' id="sides" placeholder="#" value="6" #sides></ion-input>\n    </ion-item>\n    <button ion-button full (click)="rollDice()">Roll</button>\n    <ion-item>\n      <ion-label>Results: {{results}}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label>Total: {{total}}</ion-label>\n    </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/,
+        selector: 'page-dice',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/'<!-- Dice page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Dice</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <img src="../assets/images/dice.jpg" height="150" width="100%"> <!-- Banner image -->\n    <ion-item>\n      <ion-label>Dice Amount:</ion-label>\n      <!-- Input validation, we only want values between 1 and 30 (30 is a cap to make the app run smoothly) -->\n      <ion-input type="number" min="1" max="30" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="1" #amount></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Side Amount:</ion-label>\n      <!-- Input validation, we only want values between 2 and 144 (all possible dice sizes) -->\n      <ion-input type="number" min="2" max="144" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' id="sides" placeholder="#" value="6" #sides></ion-input>\n    </ion-item>\n    <button ion-button full (click)="rollDice()">Roll</button> <!-- Button to run rollDice() function -->\n    <ion-item>\n      <ion-label>Results: {{results}}</ion-label> <!-- Display results variable -->\n    </ion-item>\n    <ion-item>\n      <ion-label>Total: {{total}}</ion-label> <!-- Display total variable -->\n    </ion-item>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\dice\dice.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], dicePage);

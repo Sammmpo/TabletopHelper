@@ -40,6 +40,15 @@ module.exports = [
     "clobbers": [
       "navigator.splashscreen"
     ]
+  },
+  {
+    "id": "cordova-plugin-vibration.notification",
+    "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+    "pluginId": "cordova-plugin-vibration",
+    "merges": [
+      "navigator.notification",
+      "navigator"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -51,7 +60,8 @@ module.exports.metadata =
   "cordova-plugin-console": "1.0.5",
   "cordova-plugin-statusbar": "2.2.2",
   "cordova-plugin-device": "1.1.4",
-  "cordova-plugin-splashscreen": "4.0.3"
+  "cordova-plugin-splashscreen": "4.0.3",
+  "cordova-plugin-vibration": "2.1.6"
 };
 // BOTTOM OF METADATA
 });

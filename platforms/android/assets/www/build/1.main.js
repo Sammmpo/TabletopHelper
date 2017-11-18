@@ -5936,16 +5936,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var initiativePage = (function () {
-    function initiativePage(navCtrl, navParams, firebaseProvider, nativeAudio) {
+    //@ViewChild("playerAmount") playerAmount;
+    function initiativePage(navCtrl, navParams, firebaseProvider, nativeAudio, toast) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
         this.nativeAudio = nativeAudio;
-        // if (firebaseProvider.currentUser == " "){ // if the currentUser is not defined for some reason, it takes to the login page.
-        //   this.navCtrl.setRoot('LoginPage');
-        //   }
-        this.nativeAudio.preloadSimple('uniqueId1', './beat.wav');
-        this.nativeAudio.play('uniqueId1');
+        this.toast = toast;
+        this.playerArray = [];
+        this.newItem = '';
+        if (firebaseProvider.currentUser == " ") {
+            document.location.href = 'index.html';
+        }
+        else {
+            this.players = this.firebaseProvider.getPlayers(this.firebaseProvider.currentUser); // sends the currentUser to the 'getPlayers' function.
+            console.log(this.firebaseProvider.currentUser);
+        }
     }
     initiativePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad initiativePage');
@@ -5960,18 +5966,50 @@ var initiativePage = (function () {
             console.log("Error!");
         });
     };
-    initiativePage.prototype.play = function () {
-        this.nativeAudio.play('uniqueId1');
-        console.log("play sound");
+    initiativePage.prototype.addItem = function () {
+        if (this.firebaseProvider.currentUser == " ") {
+            this.navCtrl.setRoot('LoginPage');
+        }
+        else {
+            this.firebaseProvider.addItem(this.newItem, this.firebaseProvider.currentUser); // sends the new item name and the currentUser to the 'addItem' function.
+            this.toast.create({
+                message: 'Item added!',
+                duration: 2000
+            }).present();
+        }
+    };
+    initiativePage.prototype.removeItem = function (id) {
+        if (this.firebaseProvider.currentUser == " ") {
+            this.navCtrl.setRoot('LoginPage');
+        }
+        else {
+            this.firebaseProvider.removeItem(id, this.firebaseProvider.currentUser); // sends the selected item name and the currentUser to the 'removeItem' function.
+        }
+    };
+    initiativePage.prototype.selectRandom = function () {
+        console.log("selecting random!");
+        this.playerArray = []; // reset the array
+        for (var i = 0; i < parseInt(document.getElementById('playerAmount').innerHTML); i++) {
+            // then push each player to the array.
+            var playerId = document.getElementById("" + i + "").innerHTML;
+            this.playerArray.push(playerId);
+        }
+        console.log(this.playerArray);
+        if (this.playerArray.length > 0) {
+            for (var i = 0; i < this.playerArray.length; i++) {
+                document.getElementById("" + i + "").style.color = "black"; // Resets all player names to black.
+            }
+            document.getElementById("" + Math.floor(Math.random() * this.playerArray.length) + "").style.color = "blue"; // Recolors one random player name to blue.
+        }
     };
     return initiativePage;
 }());
 initiativePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])({ name: 'initiativePage' }),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<body ng-app="starter">  \n        <h1 class="title">Native Audio</h1>\n      <ion-content ng-controller="SoundController as vm">\n        <p><button ng-click="vm.play(\'bass\')" class="button icon-left ion-play button-assertive">Play Bass</button></p>\n        <p><button ng-click="vm.play(\'hi-hat\')" class="button icon-left ion-play button-balanced">Play Hi-Hat</button></p>\n        <p><button ng-click="vm.play(\'snare\')" class="button icon-left ion-play button-energized">Play Snare</button></p>\n        <p><button ng-click="vm.play(\'bongo\')" class="button icon-left ion-play button-positive">Play Bongo</button></p>\n        <button ion-button full (click)="play()">SOUND</button>\n      </ion-content>\n</body>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
+        selector: 'page-initiative',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/'<!-- initiative page -->\n\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Initiative</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <img src="../assets/images/initiative.jpg" height="150" width="100%">\n    <ion-row>\n        <ion-col col-9>\n          <ion-item>\n            <ion-input type="text" [(ngModel)]="newItem" placeholder="Player Name"></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col id="additem">\n          <button ion-button full (click)="addItem()">Add Player</button>\n        </ion-col>\n      </ion-row>\n    \n      <ion-list>\n        <ion-item-sliding *ngFor="let item of players | async; let i = index"> <!-- lists all items aka players from the FirebaseListObservable to the template -->\n          <ion-item>\n            <span #f{{i}} id={{i}}>{{ item.$value }} </span> <!-- Item name aka player name -->\n            <input placeholder="Add notes" style="float: right; text-align: center" /> <!-- Input field for user to add notes. Only available until closing the app. -->\n          </ion-item>\n          <ion-item-options side="right">\n            <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button> <!-- unique button for removing each player -->\n          </ion-item-options>\n        </ion-item-sliding>\n      </ion-list>\n      <span id="playerAmount" style="display: none">{{(players | async)?.length}}</span> <!-- Reads the FirebaseListObservable and gives the length of items in the folder -->\n      <button ion-button full (click)="selectRandom()">Roll Initiative</button> <!-- Choose one random player -->\n  </ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\initiative\initiative.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
 ], initiativePage);
 
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 

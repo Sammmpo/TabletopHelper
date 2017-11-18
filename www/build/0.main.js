@@ -5921,6 +5921,7 @@ __webpack_require__(445);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(461);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_vibration__ = __webpack_require__(473);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5935,14 +5936,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var timerPage = (function () {
-    function timerPage(navCtrl, navParams, firebaseProvider, NativeAudio) {
+    function timerPage(navCtrl, navParams, firebaseProvider, NativeAudio, vibration) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.firebaseProvider = firebaseProvider;
         this.NativeAudio = NativeAudio;
+        this.vibration = vibration;
         this.audio = new Audio('http://soundbible.com/mp3/cartoon-telephone_daniel_simion.mp3'); // Audio that can be played when the time is out.
+        // classic timer variables:
         this.time = 60;
+        // chess timer variables:
         this.timerRunning = false;
         this.player1turn = false;
         this.time1 = 60;
@@ -5951,6 +5956,10 @@ var timerPage = (function () {
             document.location.href = 'index.html';
         }
     }
+    timerPage.prototype.vibrate = function () {
+        this.vibration.vibrate(1000); // vibrate
+        console.log("vibrates!");
+    };
     timerPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad timerPage');
     };
@@ -5979,6 +5988,7 @@ var timerPage = (function () {
             } // reduce time by 1
             else {
                 clearInterval(_this.timeInterval);
+                _this.vibrate();
                 _this.audio.play(); // play audio
             }
         }, 1000); // each second
@@ -6019,6 +6029,7 @@ var timerPage = (function () {
                 else {
                     clearInterval(_this.timeInterval1);
                     _this.timerRunning = false;
+                    _this.vibrate();
                     _this.audio.play(); // play audio
                 }
             }, 1000); // each second
@@ -6031,6 +6042,7 @@ var timerPage = (function () {
                 else {
                     clearInterval(_this.timeInterval2);
                     _this.timerRunning = false;
+                    _this.vibrate();
                     _this.audio.play(); // play audio
                 }
             }, 1000); // each second
@@ -6047,10 +6059,10 @@ timerPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
         selector: 'page-timer',template:/*ion-inline-start:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/'<!-- timer page -->\n\n<ion-header>\n    <ion-navbar color="primary"> <!--added color primary 18.10.2017-->\n      <ion-buttons start>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-buttons>\n\n        <ion-buttons end>\n          <button ion-button (click)="logout()">\n            <ion-icon name="log-out"></ion-icon>\n          </button>\n        </ion-buttons>\n\n     <ion-title>Timer</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n    <img src="../assets/images/timer.jpg" height="150" width="100%">\n\n    <ion-item>\n        <ion-label>Time Limit</ion-label>\n        <ion-input type="number" min="1" max="3600" onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' placeholder="#" value="60" #timelimit></ion-input>\n    </ion-item>\n\n    <button ion-button full (click)="timerStart()">Start Classic Timer</button>\n    <ion-item>\n       <ion-label>Time: {{time}}</ion-label>\n    </ion-item>\n\n    <button ion-button full (click)="finishTurn()">Start Chess Timer</button>\n    <ion-item>\n        <ion-label>Time:  {{time1}}</ion-label>\n        <ion-label>Time:  {{time2}}</ion-label>\n    </ion-item>\n\n    <button ion-button small full (click)="resetTime()">Reset All</button>\n\n</ion-content>\n\n<!-- This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. -->\n'/*ion-inline-end:"C:\Users\Sampsa\Documents\GitHub\TabletopHelper\src\pages\timer\timer.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_firebase__["a" /* FirebaseProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_vibration__["a" /* Vibration */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_vibration__["a" /* Vibration */]) === "function" && _e || Object])
 ], timerPage);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 // This file is part of the TabletopHelper application developed by Sampsa Kares, Saku Junni, Asko Mikkola, Joel Koskelainen. 
 //# sourceMappingURL=timer.js.map
 
